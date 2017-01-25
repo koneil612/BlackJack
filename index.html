@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Blackjack</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="static/blackjack.css">
+        <script src="blackjackclosure.js"></script>
+
+    </head>
+    <body>
+<div>
+    <h1 class="heading">BLACKJACK</h1>
+    <hr />
+
+      <div class="buttons">
+        <button id="deal-button">Deal</button>
+        <button id="hit-button">Hit</button>
+        <button id="stand-button">Stay</button>
+      </div>
+
+
+    <div class="container-fluid" id="messages">
+        <div class="row">
+                  <div class="col-md-6 dealer">
+                      <p>Dealer:
+                      <label id="dealer-points" class="points"></label></p>
+                  </div>
+                  <div class="col-md-6">
+                      <div id="dealer-hand" class="dealer-hand">
+                  </div>
+              </div>
+          </div>
+      </div>
+    <div class="container-fluid" id="messages">
+        <div class="row">
+                 <div class="col-md-6 player">
+                     <p>Player:
+                     <label id="player-points" class="points"></label></p>
+                  <div class="col-md-6">
+                     <div id="player-hand" class="player-hand">
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </div>
+
+</div>
+
+<!--
+<div class="flip-container" onclick="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="cardfront start">
+			<img src='static/img/back.jpg' class="start" />
+		</div>
+		<div class="cardback" id="dealer-hand">
+			back
+		</div>
+	</div>
+</div> -->
+
+
+</body>
+</html>

@@ -117,6 +117,8 @@ function PlayGame() {
         }
         dealerPoints = dealerHand.getPoints();
         playerPoints = playerHand.getPoints();
+        $('#player-points').text("");
+        $('#dealer-points').text("");
         $('#dealer-points').append(dealerPoints);
         $('#player-points').append(playerPoints);
         $("#deal-button").prop("disabled", true);
@@ -167,8 +169,8 @@ $("document").ready(function(){
 
 // deal-button
     $('#deal-button').click(function() {
-            game = PlayGame();
-            game.deal();
+        game = PlayGame();
+        game.deal();
     });
 // hit-button
     $('#hit-button').click(function() {

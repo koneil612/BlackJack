@@ -25,25 +25,30 @@ body {
 
 }
 
-.dealer p {
-    padding-top: 65px;
+.player {
+    padding-top: 45px;
+    text-align: center;
+}
+
+.points {
+    /*padding-top: 45px;*/
     text-align: center;
 }
 
 .dealer-hand img {
     position: relative;
-    height: 150px;
+    height: 200px;
     margin-top: 20px;
     border: 3px black solid;
     border-radius: 10px;
 }
-.player p {
-    padding-top: 45px;
-    text-align: center;
+
+.dealer {
+    padding-bottom: 40px;
 }
 .player-hand img {
     position: relative;
-    height: 150px;
+    height: 200px;
     margin-top: 20px;
     border: 3px black solid;
     border-radius: 10px;

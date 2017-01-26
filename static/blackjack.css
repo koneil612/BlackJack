@@ -29,6 +29,9 @@ body {
     padding-top: 45px;
     text-align: center;
 }
+#dealer-points {
+    visibility: hidden;
+}
 
 .points {
     /*padding-top: 45px;*/

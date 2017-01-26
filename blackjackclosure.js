@@ -69,6 +69,21 @@ function Hand(player) {
         $("#" + player + "-points").text(getPoints());
     }
 
+    function addHidden(card) {
+        if (card.isAce()) {
+            numAces++;
+        }
+        cards.push(card);
+        var hide = true;
+        if (hide = true) {
+            $("#" + player + "-hand").append('<img src="static/img/back.jpg" />');
+        }
+        else {
+            $("#" + player + "-hand").append("<img src='" + card.getImageUrl() + "' />");
+        }
+        return hide;
+}
+
     function getPoints() {
         var sum = 0;
         for (var i = 0;i <cards.length; i++) {
@@ -86,7 +101,7 @@ function Hand(player) {
         return sum;
     }
 
-    return {"addCard":addCard, "getPoints":getPoints};
+    return {"addCard":addCard, "getPoints":getPoints, "addHidden":addHidden};
 }
 
 
@@ -104,7 +119,7 @@ function PlayGame() {
 
     function deal(){
         playerHand.addCard(myDeck.draw());
-        dealerHand.addCard(myDeck.draw());
+        dealerHand.addHidden(myDeck.draw());
         playerHand.addCard(myDeck.draw());
             if(playerHand.getPoints() == 21) {
                 $("#player-points").text("Blackjack! Player Wins");
@@ -171,6 +186,7 @@ $("document").ready(function(){
     $('#deal-button').click(function() {
         game = PlayGame();
         game.deal();
+        $('#dealer-points').visibility(false);
     });
 // hit-button
     $('#hit-button').click(function() {
@@ -179,6 +195,8 @@ $("document").ready(function(){
 // stand-button
     $('#stand-button').click(function() {
         game.stand();
+        dealerHand.addHidden.hide(false);
+        $('#dealer-points').css('visibility', 'visible');
     });
 
 });

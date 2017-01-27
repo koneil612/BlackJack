@@ -1,4 +1,7 @@
 function Card(point, suit) {
+    // getting ready to have the dealer card down.
+    var faceDown = false;
+    // this is getting the suit and point of the cards 11 = jack so we did a swich and case here to read them for the photos
     function getCardImageUrl(){
         var p = point;
         switch (point) {
@@ -10,8 +13,14 @@ function Card(point, suit) {
             break;
             case 1: p = 'ace';
         }
+        if(faceDown){
+            return 'static/img/back.jpg';
+        } else {
         return 'static/img/' + p +'_of_' + suit +'.png';
+        }
     }
+
+    // getting the point value on the cards geting the ace as 11 also setting the face cards to the 10 point value
     function getValue(){
         if(point > 10)  {
             return 10;
@@ -21,15 +30,22 @@ function Card(point, suit) {
             return point;
         }
     }
+
+    // this is our facedown (dealer first card function)
+    function setFaceDown(){
+        faceDown=true;
+        return this;
+    }
+    // saying if it's ace put point to 1 we do this later if the hand if over 21
     function isAce() {
         return point==1;
     }
-    return {"getCardImageUrl": getCardImageUrl, "getValue": getValue, "isAce":isAce};
+    return {"getCardImageUrl": getCardImageUrl, "getValue": getValue, "isAce":isAce,"setFaceDown":setFaceDown};
 }
 
 function Deck(){
+    // building the deck
     var deck = [];
-    // var cards = [];
     var suits = ['spades', 'diamonds', 'hearts', 'clubs'];
     for (var i = 1; i <= 13; i++){
         for (var j =0; j <= 3; j++) {
@@ -69,20 +85,6 @@ function Hand(player) {
         $("#" + player + "-points").text(getPoints());
     }
 
-    function addHidden(card) {
-        if (card.isAce()) {
-            numAces++;
-        }
-        cards.push(card);
-        var hide = true;
-        if (hide = true) {
-            $("#" + player + "-hand").append('<img src="static/img/back.jpg" />');
-        }
-        else {
-            $("#" + player + "-hand").append("<img src='" + card.getImageUrl() + "' />");
-        }
-        return hide;
-}
 
     function getPoints() {
         var sum = 0;
@@ -99,11 +101,12 @@ function Hand(player) {
             aceIndex++;
         }
         return sum;
+
     }
 
-    return {"addCard":addCard, "getPoints":getPoints, "addHidden":addHidden};
-}
+    return {"addCard":addCard, "getPoints":getPoints};
 
+}
 
 
 function PlayGame() {
@@ -119,7 +122,7 @@ function PlayGame() {
 
     function deal(){
         playerHand.addCard(myDeck.draw());
-        dealerHand.addHidden(myDeck.draw());
+        dealerHand.addCard((myDeck.draw()).setFaceDown());
         playerHand.addCard(myDeck.draw());
             if(playerHand.getPoints() == 21) {
                 $("#player-points").text("Blackjack! Player Wins");
@@ -127,7 +130,7 @@ function PlayGame() {
             }
         dealerHand.addCard(myDeck.draw());
         if (dealerHand.getPoints() == 21) {
-            $("#dealer-points").text("Blackjack! Player Wins");
+            $("#player-points").text("Blackjack! Dealer Wins");
             gameOver();
         }
         dealerPoints = dealerHand.getPoints();
@@ -139,6 +142,7 @@ function PlayGame() {
         $("#deal-button").prop("disabled", true);
         $("#hit-button").prop("disabled", false);
         $("#stand-button").prop("disabled", false);
+        $('#dealer-points').css('visibility', 'hidden');
     }
 
     function hit() {
@@ -152,6 +156,10 @@ function PlayGame() {
     function stand() {
         $("#hit-button").prop("disabled", true);
         $("#stand-button").prop("disabled", true);
+
+
+
+
         while (dealerHand.getPoints() < 17) {
             dealerHand.addCard(myDeck.draw());
         }
@@ -171,6 +179,7 @@ function PlayGame() {
         $("#hit-button").prop("disabled", true);
         $("#stand-button").prop("disabled", true);
         $("#deal-button").prop("disabled", false);
+
     }
 
     return {"hit":hit, "stand": stand, "deal":deal};
@@ -182,20 +191,20 @@ $("document").ready(function(){
     $("#hit-button").prop("disabled", true);
     $("#stand-button").prop("disabled", true);
 
-// deal-button
+    // deal-button
     $('#deal-button').click(function() {
         game = PlayGame();
         game.deal();
-        $('#dealer-points').visibility(false);
+
     });
-// hit-button
+    // hit-button
     $('#hit-button').click(function() {
     game.hit();
     });
-// stand-button
+    // stand-button
     $('#stand-button').click(function() {
         game.stand();
-        dealerHand.addHidden.hide(false);
+        // dealerHand.addHidden.hide(false);
         $('#dealer-points').css('visibility', 'visible');
     });
 

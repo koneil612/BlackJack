@@ -109,7 +109,7 @@ function Hand(player) {
         }
         cards.push(card);
         if (card.isFaceDown()) {
-            $("#card-front").append("<img src='static/img/back.jpg' />");
+            $("#card-front").append("<img src='static/img/back.png' />");
             $("#card-back").append("<img src='" + card.getCardImageUrl() + "' />");
         } else {
             if(player=="dealer"){

@@ -40,7 +40,7 @@ function Card(point, suit) {
         }
     }
 
-    // this is our facedown (dealer first card function)
+    // this is facedown (dealer first card function)
     function setFaceDown() {
         faceDown = true;
         return this;
@@ -103,6 +103,7 @@ function Hand(player) {
     var cards = [];
     var numAces = 0;
 
+
     function addCard(card) {
         if (card.isAce()) {
             numAces++;
@@ -152,12 +153,11 @@ function PlayGame() {
     var myDeck = Deck();
     var playerHand = Hand("player");
     var dealerHand = Hand("dealer");
+    faceDown = false; 
     $('#dealer-hand-faceup').empty();
     $('#card-front').empty();
     $('#card-back').empty();
     $('#player-hand').empty();
-    // playerhand.cards=[];
-    // dealerhand.cards=[];
     $('#player-points').text("");
     $('#dealer-points').text("");
 
@@ -197,9 +197,6 @@ function PlayGame() {
     function stand() {
         $("#hit-button").prop("disabled", true);
         $("#stand-button").prop("disabled", true);
-
-
-
 
         while (dealerHand.getPoints() < 17) {
             dealerHand.addCard(myDeck.draw());

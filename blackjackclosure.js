@@ -153,27 +153,34 @@ function PlayGame() {
     var myDeck = Deck();
     var playerHand = Hand("player");
     var dealerHand = Hand("dealer");
-    faceDown = false; 
+    faceDown = false;
     $('#dealer-hand-faceup').empty();
     $('#card-front').empty();
     $('#card-back').empty();
     $('#player-hand').empty();
     $('#player-points').text("");
     $('#dealer-points').text("");
+    // $("#f1_card").css("transform", "none");
+    // $("#f1_card").css("transform", ".5s rotateY(360deg)");
+
 
     function deal() {
         playerHand.addCard(myDeck.draw());
         dealerHand.addCard((myDeck.draw()).setFaceDown());
         playerHand.addCard(myDeck.draw());
         if (playerHand.getPoints() == 21) {
+            $('#dealer-points').css('visibility', 'visible');
             $("#player-points").text("Blackjack! Player Wins");
             gameOver();
         }
         dealerHand.addCard(myDeck.draw());
         if (dealerHand.getPoints() == 21) {
+            $('#dealer-points').css('visibility', 'visible');
             $("#player-points").text("Blackjack! Dealer Wins");
             gameOver();
         }
+        $("#f1_card").css("transform", "");
+        $("#f1_card").css("transition","0.001s");
         dealerPoints = dealerHand.getPoints();
         playerPoints = playerHand.getPoints();
         $('#player-points').text("");
@@ -184,6 +191,7 @@ function PlayGame() {
         $("#hit-button").prop("disabled", false);
         $("#stand-button").prop("disabled", false);
         $('#dealer-points').css('visibility', 'hidden');
+
     }
 
     function hit() {
@@ -217,16 +225,10 @@ function PlayGame() {
         $("#hit-button").prop("disabled", true);
         $("#stand-button").prop("disabled", true);
         $("#deal-button").prop("disabled", false);
-        $("#f1_card").css("transform", "rotateY(180deg)");
-        // $("#f1_card").css("-5px 5px 5px #aaa");
-
     }
 
     return {
-        "hit": hit,
-        "stand": stand,
-        "deal": deal
-    };
+        "hit": hit, "stand": stand, "deal": deal, "gameOver": gameOver};
 }
 
 
@@ -249,8 +251,12 @@ $("document").ready(function() {
     $('#stand-button').click(function() {
         $('#dealer-points').css('visibility', 'visible');
         $("#f1_card").css("transform", "rotateY(180deg)");
+        $("#f1_card").css("transition","1.0s");
         $("#f1_card").css("-5px 5px 5px #aaa");
         game.stand();
+    });
+    $('#newgame-button').click(function() {
+        PlayGame();
     });
 
 });

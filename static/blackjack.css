@@ -11,6 +11,7 @@ body {
     background-image: url('img/redtable.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
+	font-family: 'Helvetica Neue';
 }
 .heading {
     font-family: 'Poker Night';

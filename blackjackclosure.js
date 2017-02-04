@@ -160,8 +160,7 @@ function PlayGame() {
     $('#player-hand').empty();
     $('#player-points').text("");
     $('#dealer-points').text("");
-    // $("#f1_card").css("transform", "none");
-    // $("#f1_card").css("transform", ".5s rotateY(360deg)");
+
 
 
     function deal() {
@@ -177,7 +176,7 @@ function PlayGame() {
         dealerHand.addCard(myDeck.draw());
         if (dealerHand.getPoints() == 21) {
             $('#dealer-points').css('visibility', 'visible');
-            $("#player-points").text("Blackjack! Dealer Wins");
+            $("#player-points").text("Blackjack! The Queen Wins");
             gameOver();
         }
         $("#f1_card").css("transform", "");
@@ -213,10 +212,10 @@ function PlayGame() {
         }
         if (dealerHand.getPoints() > 21) {
             $('#dealer-points').css('visibility', 'visible');
-            $("#player-points").text("Dealer busts! Player Wins!" + playerPoints);
+            $("#player-points").text("The Queen busts! You Win!" + playerPoints);
         } else if (dealerHand.getPoints() > playerHand.getPoints()) {
             $('#dealer-points').css('visibility', 'visible');
-            $("#player-points").text("Dealer wins!");
+            $("#player-points").text("The Queen wins!");
         } else if (dealerHand.getPoints() == playerHand.getPoints()) {
             $('#dealer-points').css('visibility', 'visible');
             $("#player-points").text("Push!");

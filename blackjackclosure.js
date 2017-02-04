@@ -110,7 +110,7 @@ function Hand(player) {
         }
         cards.push(card);
         if (card.isFaceDown()) {
-            $("#card-front").append("<img src='static/img/back.png' />");
+            $("#card-front").append("<img src='static/img/hat.jpg' />");
             $("#card-back").append("<img src='" + card.getCardImageUrl() + "' />");
         } else {
             if(player=="dealer"){
@@ -166,6 +166,7 @@ function PlayGame() {
 
     function deal() {
         playerHand.addCard(myDeck.draw());
+
         dealerHand.addCard((myDeck.draw()).setFaceDown());
         playerHand.addCard(myDeck.draw());
         if (playerHand.getPoints() == 21) {
@@ -180,7 +181,7 @@ function PlayGame() {
             gameOver();
         }
         $("#f1_card").css("transform", "");
-        $("#f1_card").css("transition","0.001s");
+        $("#f1_card").css("transition","0.0001s");
         dealerPoints = dealerHand.getPoints();
         playerPoints = playerHand.getPoints();
         $('#player-points').text("");
@@ -197,7 +198,8 @@ function PlayGame() {
     function hit() {
         playerHand.addCard(myDeck.draw());
         if (playerHand.getPoints() > 21) {
-            $("#player-points").text("Player busts!");
+            $('#dealer-points').css('visibility', 'visible');
+            $("#player-points").text("Player busts!")
             gameOver();
         }
     }
@@ -210,12 +212,16 @@ function PlayGame() {
             dealerHand.addCard(myDeck.draw());
         }
         if (dealerHand.getPoints() > 21) {
-            $("#player-points").text("Dealer busts! Player Wins!");
+            $('#dealer-points').css('visibility', 'visible');
+            $("#player-points").text("Dealer busts! Player Wins!" + playerPoints);
         } else if (dealerHand.getPoints() > playerHand.getPoints()) {
+            $('#dealer-points').css('visibility', 'visible');
             $("#player-points").text("Dealer wins!");
         } else if (dealerHand.getPoints() == playerHand.getPoints()) {
+            $('#dealer-points').css('visibility', 'visible');
             $("#player-points").text("Push!");
         } else {
+
             $("#player-points").text("Player Wins!");
         }
         gameOver();
@@ -225,6 +231,8 @@ function PlayGame() {
         $("#hit-button").prop("disabled", true);
         $("#stand-button").prop("disabled", true);
         $("#deal-button").prop("disabled", false);
+        $("#f1_card").css("transform", "rotateY(180deg)");
+        $("#f1_card").css("transition","1.0s");
     }
 
     return {
@@ -236,6 +244,12 @@ $("document").ready(function() {
     var game;
     $("#hit-button").prop("disabled", true);
     $("#stand-button").prop("disabled", true);
+    var minBet        =   10;
+    var maxBet        =  100;
+    var initCredit    = 1000;
+    var initBet       =   10;
+
+    var dealTimeDelay =  700;
 
     // deal-button
     $('#deal-button').click(function() {

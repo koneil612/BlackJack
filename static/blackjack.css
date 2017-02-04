@@ -1,5 +1,5 @@
 @font-face {
-	src: url('Poker Night');
+	src: url('Alice in Wonderland');
 
 }
 
@@ -8,13 +8,19 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    background-image: url('img/redtable.jpg');
+    background-image: url('img/alicebg.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
-	font-family: 'Helvetica Neue';
+	font-family: 'Alice in Wonderland';
+	font-size: 38px;
 }
+
+.cat {
+	float: right;
+	text-align: right;
+}
+
 .heading {
-    font-family: 'Poker Night';
     text-align: center;
     font-size: 70px;
     color: #ebd12d;
@@ -22,8 +28,6 @@ body {
 #messages {
     padding-bottom: 40px;
     align-items: center;
-    font-size: 26px;
-
 }
 
 .player {
@@ -45,6 +49,7 @@ body {
     margin-top: 20px;
     border: 3px black solid;
     border-radius: 10px;
+	margin-left: -75px;
 }
 
 #dealer-hand-faceup img {
@@ -56,9 +61,9 @@ body {
 
 }
 
-#dealer-hand-faceup {
+/*#dealer-hand-faceup {
 		float: left;
-}
+}*/
 
 #dealer-hand {
 		float: left;
@@ -72,6 +77,7 @@ body {
     margin-top: 20px;
     border: 3px black solid;
     border-radius: 10px;
+	margin-left: -75px;
 }
 
 
@@ -82,10 +88,12 @@ body {
 
 button {
     background-color: gray;
+	font-size: 19px;
 }
 
 button:disabled {
     color: lightgray;
+	font-size: 19px;
 }
 
 #f1_container {
@@ -103,6 +111,7 @@ button:disabled {
     height: 100%;
     transform-style: preserve-3d;
     transition: all 1.0s linear;
+
 }
 
 .face {
@@ -111,10 +120,12 @@ button:disabled {
     height: 100%;
     backface-visibility: hidden;
 	border: 0px;
+
 }
 .face.back {
     display: block;
     transform: rotateY(180deg);
+	margin-left: -150px;
     /*box-sizing: border-box;*/
     /*padding: 10px;*/
     /*color: white;

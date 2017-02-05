@@ -133,3 +133,10 @@ button:disabled {
     text-align: center;*/
 
 }
+.betting {
+	display: inline;
+}
+
+#bank {
+	padding-top: 45px;
+}

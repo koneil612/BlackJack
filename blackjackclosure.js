@@ -171,6 +171,7 @@ function PlayGame() {
         if (playerHand.getPoints() == 21) {
             $('#dealer-points').css('visibility', 'visible');
             $("#player-points").text("Blackjack! Player Wins");
+
             gameOver();
         }
         dealerHand.addCard(myDeck.draw());
@@ -198,7 +199,7 @@ function PlayGame() {
         playerHand.addCard(myDeck.draw());
         if (playerHand.getPoints() > 21) {
             $('#dealer-points').css('visibility', 'visible');
-            $("#player-points").text("Player busts!")
+            $("#player-points").text("Player busts!");
             gameOver();
         }
     }
@@ -220,11 +221,26 @@ function PlayGame() {
             $('#dealer-points').css('visibility', 'visible');
             $("#player-points").text("Push!");
         } else {
-
             $("#player-points").text("Player Wins!");
         }
         gameOver();
     }
+
+    // function betIncreased() {
+        // var betting = ('#player-bank');
+        // var count = betting - 10;
+        // var counter = 10;
+        // $("#increase-button").click(function(){
+        //     $("#player-bank").html("$"+count);
+        //     $('#counter').html(function(i, val) {return (val*1+10)});
+        // });
+    // }
+    // else if $("#decrease-button").click{
+    //         function decrease() {
+    //         count = count + 10;
+    //         $("#player-bank").html("$"+count);
+    //         $('#counter').html(function(i, val) {return val*1-10});;
+    //         }
 
     function gameOver() {
         $("#hit-button").prop("disabled", true);
@@ -241,17 +257,15 @@ function PlayGame() {
 
 $("document").ready(function() {
     var game;
+    var count = 1000;
+    var counter = 10;
     $("#hit-button").prop("disabled", true);
     $("#stand-button").prop("disabled", true);
-    var minBet        =   10;
-    var maxBet        =  100;
-    var initCredit    = 1000;
-    var initBet       =   10;
-
-    var dealTimeDelay =  700;
 
     // deal-button
     $('#deal-button').click(function() {
+        $("#decrease-button").prop("disabled", true);
+        $("#increase-button").prop("disabled", true);
         game = PlayGame();
         game.deal();
 
@@ -268,8 +282,21 @@ $("document").ready(function() {
         $("#f1_card").css("-5px 5px 5px #aaa");
         game.stand();
     });
-    $('#newgame-button').click(function() {
-        PlayGame();
-    });
 
+    $("#increase-button").click(function() {
+    count = count - 10;
+    $("#player-bank").html("$"+count);
+     $('#counter').html(function(i, val) { return val*1+10 });
+});
+
+    $("#decrease-button").click(function() {
+        count = count + 10;
+        $("#player-bank").html("$"+count);
+         $('#counter').html(function(i, val) { return val*1-10 });
+        });
+
+    //     var startingBank = $('#player-bank');
+    //     var increase = $()
+    //     $('#bet-increase').text("$" )
+    //     $('#player-bank').text($('#player-bank').val() + 10);
 });

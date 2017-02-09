@@ -226,21 +226,28 @@ function PlayGame() {
         gameOver();
     }
 
-    // function betIncreased() {
-        // var betting = ('#player-bank');
-        // var count = betting - 10;
-        // var counter = 10;
-        // $("#increase-button").click(function(){
-        //     $("#player-bank").html("$"+count);
-        //     $('#counter').html(function(i, val) {return (val*1+10)});
-        // });
-    // }
-    // else if $("#decrease-button").click{
-    //         function decrease() {
-    //         count = count + 10;
-    //         $("#player-bank").html("$"+count);
-    //         $('#counter').html(function(i, val) {return val*1-10});;
-    //         }
+    function bet() {
+        // var betting = $("#betting").html();
+        // var money = $("#player-bank").html();
+        // var winnings = bet * 2;
+        // $("#bet-increase").html('0');
+        // $("#money").html(parseInt(winnings) + parseInt(money));
+        //     return false;
+        var count = 1000;
+        var counter = 10;
+        if ($("#increase-button").click)(function() {
+        count = count - 10;
+         $("#player-bank").html("$"+count);
+         $('#counter').html(function(i, val) { return val*1+10 });
+        });
+        if ($("#decrease-button").click)(function() {
+         count = count + 10;
+         $("#player-bank").html("$"+count);
+         $('#counter').html(function(i, val) { return val*1-10 });
+        });
+    }
+
+
 
     function gameOver() {
         $("#hit-button").prop("disabled", true);
@@ -251,14 +258,14 @@ function PlayGame() {
     }
 
     return {
-        "hit": hit, "stand": stand, "deal": deal, "gameOver": gameOver};
+        "hit": hit, "stand": stand, "deal": deal, "bet": bet, "gameOver": gameOver};
 }
 
 
 $("document").ready(function() {
     var game;
-    var count = 1000;
-    var counter = 10;
+    // var count = 1000;
+    // var counter = 10;
     $("#hit-button").prop("disabled", true);
     $("#stand-button").prop("disabled", true);
 
@@ -284,19 +291,21 @@ $("document").ready(function() {
     });
 
     $("#increase-button").click(function() {
-    count = count - 10;
-    $("#player-bank").html("$"+count);
-     $('#counter').html(function(i, val) { return val*1+10 });
-});
+        game.bet();
+//     count = count - 10;
+//     $("#player-bank").html("$"+count);
+//      $('#counter').html(function(i, val) { return val*1+10 });
+// });
 
-    $("#decrease-button").click(function() {
-        count = count + 10;
-        $("#player-bank").html("$"+count);
-         $('#counter').html(function(i, val) { return val*1-10 });
-        });
+    // $("#decrease-button").click(function() {
+    //     count = count + 10;
+    //     $("#player-bank").html("$"+count);
+    //      $('#counter').html(function(i, val) { return val*1-10 });
+    //     });
 
     //     var startingBank = $('#player-bank');
     //     var increase = $()
     //     $('#bet-increase').text("$" )
     //     $('#player-bank').text($('#player-bank').val() + 10);
+    });
 });

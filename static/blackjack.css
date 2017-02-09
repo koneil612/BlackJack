@@ -15,6 +15,13 @@ body {
 	font-size: 38px;
 }
 
+.drink {
+	float: left;
+	display: inline-flex;
+	/*text-align: left;*/
+	height: 100px;
+}
+
 .cat {
 	float: right;
 	text-align: right;

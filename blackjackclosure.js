@@ -148,7 +148,7 @@ function Hand(player) {
 
 }
 
-
+// start game (and first deal)
 function PlayGame() {
     var myDeck = Deck();
     var playerHand = Hand("player");
@@ -162,7 +162,7 @@ function PlayGame() {
     $('#dealer-points').text("");
 
 
-
+//deal button
     function deal() {
         playerHand.addCard(myDeck.draw());
 
@@ -194,7 +194,7 @@ function PlayGame() {
         $('#dealer-points').css('visibility', 'hidden');
 
     }
-
+// hit button
     function hit() {
         playerHand.addCard(myDeck.draw());
         if (playerHand.getPoints() > 21) {
@@ -203,7 +203,7 @@ function PlayGame() {
             gameOver();
         }
     }
-
+// stand button  //
     function stand() {
         $("#hit-button").prop("disabled", true);
         $("#stand-button").prop("disabled", true);
@@ -225,7 +225,7 @@ function PlayGame() {
         }
         gameOver();
     }
-
+// bet button
     function bet() {
         // var betting = $("#betting").html();
         // var money = $("#player-bank").html();
@@ -248,7 +248,7 @@ function PlayGame() {
     }
 
 
-
+// how to call a gameover
     function gameOver() {
         $("#hit-button").prop("disabled", true);
         $("#stand-button").prop("disabled", true);

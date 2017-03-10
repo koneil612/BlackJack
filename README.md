@@ -9,5 +9,5 @@ Hit when you think you need another card, stand if you feel you are ready to see
 
 <h2>Stretch Goals:</h2>
 
-Betting will be added to the game
-Going to also try to add SocketIO into the game to have the Chesire cat talk
+<p> - Betting will be added to the game </p>
+<p> - Going to also try to add SocketIO into the game to have the Chesire cat talk </p>

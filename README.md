@@ -4,7 +4,7 @@
 
 <p>You are playing against the Queen of Hearts to try and get to 21.
 
-Hit when you think you need another card, stand if you feel you are ready to see. Queen of Hearts stays at 17 other wise she will get more cards and continue playing until either she busts or hits 21.
+<p>Hit when you think you need another card, stand if you feel you are ready to see. Queen of Hearts stays at 17 other wise she will get more cards and continue playing until either she busts or hits 21.</p>
 
 
 <h2>Stretch Goals:</h2>
